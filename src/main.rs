@@ -112,3 +112,167 @@ fn test_boolean() {
 
     println!("{} {}", a, b);
 }
+
+// NOTE: Char
+#[test]
+fn test_char() {
+    let a = 'a';
+    let b = 'b';
+
+    println!("{} {}", a, b)
+}
+
+// NOTE: Tupel
+#[test]
+fn test_tupel() {
+    let mut data: (i32, f64, bool) = (8, 4.23, true);
+    println!("{:?}", data);
+
+    //how to access the data on the tuple
+    let a = data.0;
+    let b = data.1;
+    let c = data.2;
+
+    println!("{} {} {}", a, b, c);
+
+    // desctructuring the tupel
+    let (x, y, _) = data;
+    println!("{} {}", x, y);
+
+    data.0 = 19;
+    data.1 = 30.2;
+    println!("{:?}", data);
+}
+
+// NOTE: Unit
+// for function who doesn't need return any value
+fn unit() {
+    println!("This is Unit Rust, Empty Tuple")
+}
+#[test]
+fn test_unit() {
+    let result = unit();
+    println!("{:?}", result);
+
+    // you can use this to declare empty tupel
+    let datas: () = ();
+    println!("{:?}", datas);
+}
+
+// NOTE: Array
+#[test]
+fn test_array() {
+    let mut array = [1, 2, 3, 4, 5];
+    let array_explicit: [i32; 5] = [6, 7, 8, 9, 0]; // --> explicit
+
+    println!("{:?}", array);
+    println!("{:?}", array_explicit);
+
+    let a = array[0];
+    let b = array[1];
+    let c = array[2];
+
+    println!("{} {} {}", a, b, c);
+
+    array[0] = 11;
+    array[1] = 12;
+    println!("{:?}", array);
+}
+
+// NOTE: Constant
+const MINIMUM: i32 = 5;
+#[test]
+fn test_const() {
+    const MAXIMUM: i32 = 100;
+    println!("{} {}", MINIMUM, MAXIMUM);
+}
+
+// NOTE: Memory Management (Stack and Heap)
+fn function_a() {
+    let a = 10;
+    let b = String::from("bard");
+
+    println!("{} {}", a, b);
+}
+fn function_b() {
+    let a = 10;
+    let b = String::from("lala");
+
+    println!("{} {}", a, b);
+}
+#[test]
+fn test_stack_heap() {
+    function_a();
+    function_b();
+}
+
+// NOTE: String Slice
+// for &str --> fix sized string  --> save it stack
+#[test]
+fn test_string_slice() {
+    let name: &str = "        kjkjakj kjfkj ";
+    let trim: &str = name.trim();
+
+    println!("{}", name);
+    println!("{}", trim);
+}
+
+// NOTE: String
+// for string_type --> not fix sized string --> save it heap
+#[test]
+fn test_string_type() {
+    let mut name: String = String::from("Allo Test");
+    name.push_str("guraaaa");
+    println!("{}", name);
+
+    let brip = name.replace("Test", "brip");
+    println!("{}", brip);
+}
+
+// NOTE :Ownership
+// Only 1 Ownership (variable) for 1 value
+#[test]
+fn test_data_copy() {
+    //--> only for the data type that saved on the stack
+    let a = 10;
+    let mut b = a; // --> this only copy the value from variable a to b
+    println!("{} {}", a, b);
+
+    b = 50; // --> this only affect the value of variable b
+    println!("{} {}", a, b);
+}
+#[test]
+fn test_ownership_movement() {
+    let name: String = String::from("Allo");
+    println!("{}", name);
+
+    let mut name1: String = name;
+    println!("{}", name1);
+    // println!("{}", name); //--> you can't do this on heap, the value of name already move their ownership to name
+
+    name1 = String::from("braaap");
+    println!("{}", name1);
+}
+#[test]
+fn test_clone() {
+    // Alternative to "Copy" the heap variable but it costly because it will to create a new stack
+    // and then move it value them to heap
+    let address: String = String::from("Baras");
+
+    let city: String = address.clone();
+    println!("{} || {}", address, city);
+}
+
+// NOTE: IF Expression
+#[test]
+fn test_if_expression() {
+    let a = 6;
+
+    if a >= 8 {
+        println!("Good");
+    } else if a >= 5 {
+        println!("Medium");
+    } else {
+        println!("Bad");
+    }
+}
