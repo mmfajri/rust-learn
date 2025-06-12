@@ -4,6 +4,8 @@ fn main() {
 }
 
 // NOTE: Unit Testing
+// to run the program run this prompt
+// cargo test <name_function> -- --exact-nocapture
 #[test]
 fn hello_test() {
     println!("Helloe test!");
@@ -276,3 +278,69 @@ fn test_if_expression() {
         println!("Bad");
     }
 }
+
+// NOTE: Let Statement
+#[test]
+fn test_let_statement() {
+    let value = 7;
+    let result: &str = if value >= 8 {
+        "Good"
+    } else if value >= 6 {
+        "Medium"
+    } else if value >= 3 {
+        "Bad"
+    } else {
+        "Undefined"
+    };
+    println!("Result value -> {}", result);
+}
+
+// NOTE: Loop
+#[test]
+fn test_loop() {
+    let mut counter = 0;
+    loop {
+        counter += 1;
+        if counter > 10 {
+            break;
+        } else if counter % 2 == 0 {
+            continue;
+        }
+        println!("Counter : {}", counter)
+    }
+}
+
+// NOTE: Loop return value
+#[test]
+fn test_loop_return_value() {
+    let mut counter = 0;
+    let result = loop {
+        counter += 1;
+        if counter > 10 {
+            break counter * 2;
+        }
+    };
+    println!("{}", result);
+}
+
+// NOTE: Loop Label
+#[test]
+fn test_loop_lable() {
+    let mut number = 1;
+    'outer: loop {
+        let mut i = 1;
+        loop {
+            if number > 10 {
+                break 'outer;
+            }
+            println!("{} x {} = {}", number, i, number * i);
+            i += 1;
+            if i > 10 {
+                break;
+            }
+        }
+        number += 1;
+    }
+}
+
+// NOTE:
