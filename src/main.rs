@@ -343,4 +343,109 @@ fn test_loop_lable() {
     }
 }
 
-// NOTE:
+// NOTE: While Loop
+#[test]
+fn test_while_loop() {
+    println!("This is while loop test");
+    let mut counter = 0;
+    while counter <= 10 {
+        if counter % 2 == 0 {
+            println!("Counter {}", counter);
+        }
+        counter += 1;
+    }
+}
+
+// NOTE: For Loop
+#[test]
+fn test_array_iteration() {
+    let array: [&str; 5] = ["A", "B", "C", "D", "E"];
+    let mut index = 0;
+
+    while index < array.len() {
+        println!("Value: {}", array[index]);
+        index += 1;
+    }
+}
+
+#[test]
+fn test_for_loop_array_iteration() {
+    let array: [&str; 5] = ["A", "B", "C", "D", "E"];
+
+    for item in array {
+        println!("Value {}", item);
+    }
+}
+
+#[test]
+fn test_range() {
+    // this is range exclusive
+    let array: [&str; 5] = ["A", "B", "C", "D", "E"];
+
+    let range = 0..5;
+    println!("Range Start {}", range.start); //Inclusive
+    println!("Range End {}", range.end); //Exclusive
+
+    for i in range {
+        println!("Value {}", array[i])
+    }
+}
+
+#[test]
+fn test_range_inclusive() {
+    let array: [&str; 5] = ["A", "B", "C", "D", "E"];
+
+    let range = 0..=4;
+    println!("Range Start {}", range.start()); //Inclusive
+    println!("Range End {}", range.end()); //Exclusive
+
+    for i in range {
+        println!("Value {}", array[i])
+    }
+}
+
+// NOTE: Function
+#[test]
+fn say_hello() {
+    println!("Allo...")
+}
+fn say_goodbye(name: &str, message: &str) {
+    println!("Bye {}, {}", name, message)
+}
+#[test]
+fn test_function() {
+    say_hello();
+    say_goodbye("Allo", "Have a nice day!");
+}
+
+// NOTE: Function Return Value
+#[test]
+fn test_function_return_value() {
+    let result = factorial(5);
+    println!("Result from Factorial Function = {}", result);
+}
+fn factorial(n: i32) -> i32 {
+    if n < 1 {
+        return 0;
+    } else {
+        let mut result = 1;
+        for i in 1..=n {
+            result *= i;
+        }
+        result
+    }
+}
+
+#[test]
+fn test_recursive_function() {
+    let result = recursive_factorial(5);
+    println!("Result from Factorial Function = {}", result);
+}
+
+fn recursive_factorial(n: u32) -> u32 {
+    if n <= 1 {
+        return 1;
+    }
+
+    return n * recursive_factorial(n - 1);
+}
